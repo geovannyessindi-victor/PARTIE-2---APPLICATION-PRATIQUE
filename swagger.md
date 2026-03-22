@@ -8,33 +8,33 @@ Pour tester l'API sans utiliser le terminal, vous pouvez utiliser l'interface **
 4. Utilisez l'interface à droite pour tester les routes (GET, POST, SEARCH, PUT, DELETE) en direct sur `http://localhost:3000`.
 NB: voici ce que tu doit coller sur swagger pour voir:
 
-openapi: 3.0.0
-info:
-  title: Blog API - INF 222
-  description: |
-    API de gestion de blog pour le TAF de **ESSINDI VICTOR GEOVANNY**.
-    Cette API permet de gérer le cycle de vie complet des articles (CRUD).
-  version: 1.0.0
+        openapi: 3.0.0
+          info:
+          title: Blog API - INF 222
+          description: |
+          API de gestion de blog pour le TAF de **ESSINDI VICTOR GEOVANNY**.
+        Cette API permet de gérer le cycle de vie complet des articles (CRUD).
+          version: 1.0.0
 
-servers:
-  - url: http://localhost:3000/api
-    description: Serveur local Node.js
+        servers:
+          - url: http://localhost:3000/api
+             description: Serveur local Node.js
 
-paths:
-  /articles:
-    # --- LIRE TOUS LES ARTICLES ---
-    get:
-      summary: Liste tous les articles
-      tags: [Articles]
-      responses:
+        paths:
+         /articles:
+         # --- LIRE TOUS LES ARTICLES ---
+         get:
+         summary: Liste tous les articles
+         tags: [Articles]
+         responses:
         '200':
           description: Liste des articles récupérée avec succès.
           
-    # --- CRÉER UN ARTICLE ---
-    post:
-      summary: Créer un nouvel article
-      tags: [Articles]
-      requestBody:
+         # --- CRÉER UN ARTICLE ---
+         post:
+        summary: Créer un nouvel article
+         tags: [Articles]
+         requestBody:
         required: true
         content:
           application/json:
@@ -47,50 +47,50 @@ paths:
                 date: {type: string, example: "2026-03-22"}
                 categorie: {type: string, example: "Informatique"}
                 tags: {type: string, example: "node, api, l2"}
-      responses:
+        responses:
         '201':
           description: Article créé avec succès.
 
-  /articles/search:
-    # --- RECHERCHER UN ARTICLE ---
-    get:
-      summary: Rechercher des articles par mot-clé
-      tags: [Articles]
-      parameters:
+        /articles/search:
+        # --- RECHERCHER UN ARTICLE ---
+        get:
+         summary: Rechercher des articles par mot-clé
+         tags: [Articles]
+         parameters:
         - name: query
           in: query
           description: Mot-clé à rechercher dans le titre ou le contenu
           required: true
           schema:
             type: string
-      responses:
+        responses:
         '200':
           description: Résultats de la recherche.
 
-  /articles/{id}:
-    parameters:
-      - name: id
+         /articles/{id}:
+        parameters:
+         - name: id
         in: path
         description: ID unique de l'article
         required: true
         schema:
           type: integer
 
-    # --- LIRE UN SEUL ARTICLE ---
-    get:
-      summary: Récupérer un article par son ID
-      tags: [Articles]
-      responses:
+        # --- LIRE UN SEUL ARTICLE ---
+        get:
+          summary: Récupérer un article par son ID
+         tags: [Articles]
+        responses:
         '200':
           description: Article trouvé.
         '404':
           description: Article non trouvé.
 
-    # --- METTRE À JOUR UN ARTICLE ---
-    put:
-      summary: Modifier un article existant
-      tags: [Articles]
-      requestBody:
+        # --- METTRE À JOUR UN ARTICLE ---
+        put:
+          summary: Modifier un article existant
+          tags: [Articles]
+                requestBody:
         required: true
         content:
           application/json:
@@ -100,14 +100,14 @@ paths:
                 titre: {type: string}
                 contenu: {type: string}
                 auteur: {type: string}
-      responses:
+          responses:
         '200':
           description: Article mis à jour avec succès.
-
-    # --- SUPPRIMER UN ARTICLE ---
-    delete:
-      summary: Supprimer un article
-      tags: [Articles]
-      responses:
+    
+          # --- SUPPRIMER UN ARTICLE ---
+        delete:
+          summary: Supprimer un article
+        tags: [Articles]
+        responses:
         '200':
           description: Article supprimé.
